@@ -2,6 +2,10 @@ package com.exam.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -20,6 +24,23 @@ public class User {
     public Long getId() {
         return id;
     }
+
+    public User(Long id, String username, String firstName, String lastName, String password, String email, String phone, Boolean enabled, String profile) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.enabled = enabled;
+        this.profile = profile;
+        
+        //user has many roles
+        Set<UserRole> userRoles = new HashSet<>();
+    }
+
+
 
     public void setId(Long id) {
         this.id = id;
