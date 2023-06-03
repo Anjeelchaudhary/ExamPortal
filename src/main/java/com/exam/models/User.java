@@ -35,7 +35,7 @@ public class User {
         this.phone = phone;
         this.enabled = enabled;
         this.profile = profile;
-        
+
         //user has many roles
         Set<UserRole> userRoles = new HashSet<>();
     }
