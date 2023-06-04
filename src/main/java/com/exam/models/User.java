@@ -37,6 +37,7 @@ public class User {
         this.profile = profile;
 
         //user has many roles
+        @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "user")
         Set<UserRole> userRoles = new HashSet<>();
     }
 
