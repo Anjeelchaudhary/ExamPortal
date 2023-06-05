@@ -1,5 +1,6 @@
 package com.exam.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -21,6 +22,24 @@ public class User {
     private Boolean enabled = true;
     private String profile;
 
+
+    //user has many roles
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
+    @JsonIgnore   //if JsonIgnore is not added here then extra table will be created
+
+
+
+
     public Long getId() {
         return id;
     }
@@ -35,10 +54,6 @@ public class User {
         this.phone = phone;
         this.enabled = enabled;
         this.profile = profile;
-
-        //user has many roles
-        @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "user")
-        Set<UserRole> userRoles = new HashSet<>();
     }
 
 
