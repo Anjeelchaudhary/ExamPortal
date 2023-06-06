@@ -1,2 +1,4 @@
-package com.exam.service;public class UserServiceImpl {
+package com.exam.service;
+
+public class UserServiceImpl {
 }
