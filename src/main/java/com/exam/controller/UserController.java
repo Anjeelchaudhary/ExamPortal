@@ -21,18 +21,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    Set<UserRole> roles = new HashSet<>();
-    Role role = new Role();
-    role.setRoleId(45L);
-    role.setRoleName("");
 
-    UserRole userRole = new UserRole();
-    userRole.setUser(user);
-
-    roles.add();
     //creating User
     @PostMapping("/")
-    public User createUser(@RequestBody User user) {
-        return this.userService.createUser(user,);
+    public User createUser(@RequestBody User user) throws Exception {
+        Set<UserRole> roles = new HashSet<>();
+        Role role = new Role();
+        role.setRoleId(45L);
+        role.setRoleName("student");
+
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
+
+        roles.add(userRole);
+        return this.userService.createUser(user,roles);
     }
 }
