@@ -24,6 +24,8 @@ public class User {
 
 
     //user has many roles
+    //cascade ko help le if primary key delete garem vani secondary key pani delete automatic hune banaune ho
+    //mappedBy matlap yo class ie User class (one) hune xa ani userRole ma gayera judne xa ani teha (many) ko relation hune ho
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserRole> userRoles = new HashSet<>();
 
