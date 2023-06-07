@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    //This method is for creating user
+    //creating user
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
 
