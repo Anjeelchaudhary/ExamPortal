@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         User local = this.userRepository.findByUsername(user.getUsername());
         if (local != null) {
             System.out.println("User is already there");
-            throw new Exception("Already same person is available in database");
+            throw new Exception("Already same person  available in database");
         }else {
             //User
             for (UserRole ur:userRoles) {
@@ -36,5 +36,16 @@ public class UserServiceImpl implements UserService {
             local = this.userRepository.save(user);
         }
         return local;
+    }
+
+    //getting use by username
+    @Override
+    public User getUser(String username) {
+        return this.userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        this.userRepository.deleteById(userId);
     }
 }
