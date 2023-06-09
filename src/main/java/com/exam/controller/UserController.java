@@ -7,6 +7,7 @@ import com.exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +22,8 @@ public class UserController {
 
 
     //creating User
-    @PostMapping("/")
-    public User createUser(@RequestBody User user) throws Exception {
+    @PostMapping("")
+    public ResponseEntity<String> createUser(@RequestBody User user) throws Exception {
         Set<UserRole> roles = new HashSet<>();
         Role role = new Role();
         role.setRoleId(45L);
@@ -33,7 +34,8 @@ public class UserController {
         userRole.setRole(role);
 
         roles.add(userRole);
-        return this.userService.createUser(user,roles);
+        User userData =  this.userService.createUser(user,roles);
+        return ResponseEntity.ok("User Created Successfully");
     }
 
     @GetMapping("/{username}")
