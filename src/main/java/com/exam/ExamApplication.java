@@ -27,15 +27,15 @@ public class ExamApplication implements CommandLineRunner {
 		System.out.println("Starting");
 //
 //		User user = new User();
-//		user.setFirstName("");
-//		user.setLastName("");
-//		user.setUsername("");
+//		user.setFirstName("Anjeel");
+//		user.setLastName("Chaudhary");
+//		user.setUsername("Anjeel123");
 //		user.setPassword("");
-//		user.setEmail("");
+//		user.setEmail("abc@gmail.com");
 //
 //		Role rol1 = new Role();
 //		rol1.setRoleId(44L);
-//		rol1.setRoleName("");
+//		rol1.setRoleName("ADMIN");
 //
 //		Set<UserRole> userRolesSet = new HashSet<>();
 //		UserRole userRole = new UserRole();
