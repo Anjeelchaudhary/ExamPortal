@@ -1,5 +1,4 @@
 package com.exam.controller;
-
 import com.exam.models.Role;
 import com.exam.models.User;
 import com.exam.models.UserRole;
@@ -19,6 +18,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("")
+    public ResponseEntity<String> getAllUsers() throws Exception {
+        
+        return ResponseEntity.ok("getting all users");
+    }
 
     //creating User
     @PostMapping("")
