@@ -2,31 +2,41 @@ package com.exam.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(unique = true)
     private String username;
     private String firstName;
     private String lastName;
     private String password;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String phone;
+
     private Boolean enabled = true;
     private String profile;
 
 
     //user has many roles
-    //cascade ko help le if primary key delete garem vani secondary key pani delete automatic hune banaune ho
+    //cascade ko help le if primary key delete garem vani sec ondary key pani delete automatic hune banaune ho
     //mappedBy matlap yo class ie User class (one) hune xa ani userRole ma gayera judne xa ani teha (many) ko relation hune ho
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "user",orphanRemoval = true)
     private Set<UserRole> userRoles = new HashSet<>();
 
     public Set<UserRole> getUserRoles() {
@@ -68,6 +78,26 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -86,6 +116,15 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Authority> set = new HashSet<>();
+        this.userRoles.forEach(userRole -> {
+            set.add(new Authority(userRole.getRole().getRoleName())); 
+        });
+        return null;
     }
 
     public String getPassword() {
@@ -130,6 +169,12 @@ public class User {
 
     public User() {
     }
+
+   
+
+    
+
+   
 
 
 }
