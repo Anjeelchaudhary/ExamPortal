@@ -16,6 +16,6 @@ public class ExamApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Starting");
-//		Using generated security password: 03e58134-d897-4c4d-a6a7-e51b57c90297
+		//Security Key = mentor <- using this we will create token (form jwtUtils class)
 	}
 }
