@@ -11,7 +11,6 @@ place where students can take quiz test and practice for their interested subjec
 - Result can be Downlaod
 - Attend Quiz
 
-
-
+## UseCase diagram for the project
 ![UseCaseDiagram for ](https://github.com/Anjeelchaudhary/ExamPortal/blob/master/Pictures/UseCaseDiagram.png)
 
